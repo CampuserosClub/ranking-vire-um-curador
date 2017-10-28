@@ -55,7 +55,7 @@
                 @include('_infos')
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5 pb-3">
             <div class="col-md-3">
                 @include('_tags')
             </div>
