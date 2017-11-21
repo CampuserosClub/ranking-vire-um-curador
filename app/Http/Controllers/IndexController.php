@@ -44,8 +44,9 @@ class IndexController extends Controller
 
         /** @var Collection $activities */
         $activities = Cache::remember('activities', $this->cache, function () {
-            $activities = $this->activities->sortByDesc('votes');
-            return $this->getActivitiesAfterSnapshot($activities);
+            // return $this->activities->sortByDesc('votes');
+            return $this->getActivitiesAfterSnapshot($this->activities)
+                        ->sortByDesc('votes');
         });
 
         /** @var Collection $tags */
