@@ -59,6 +59,9 @@ class IndexController extends Controller
         $limit = $this->limit;
         $lastSelectedVotes = $activities->slice($limit-1, 1)->first()->get('votes');
 
+        // return response()->json($activities->toArray());
+        // return response()->json(['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()]);
+
         return view('index', compact('activities', 'tags', 'updated_at', 'limit', 'lastSelectedVotes'));
     }
 
