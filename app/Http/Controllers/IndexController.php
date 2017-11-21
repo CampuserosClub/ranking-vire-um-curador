@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Goutte;
 use Illuminate\Support\Collection;
 use Cache;
+use File;
 use Symfony\Component\DomCrawler\Crawler;
 
 class IndexController extends Controller
@@ -43,7 +44,8 @@ class IndexController extends Controller
 
         /** @var Collection $activities */
         $activities = Cache::remember('activities', $this->cache, function () {
-            return $this->activities->sortByDesc('votes');
+            $activities = $this->activities->sortByDesc('votes');
+            return $this->getActivitiesAfterSnapshot($activities);
         });
 
         /** @var Collection $tags */
@@ -59,13 +61,43 @@ class IndexController extends Controller
         $limit = $this->limit;
         $lastSelectedVotes = $activities->slice($limit-1, 1)->first()->get('votes');
 
-        // return response()->json($activities->toArray());
-        // return response()->json(['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()]);
+        // do the snapshot
+        // return response()->json(['stats' => ['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()], 'activities' => $activities->toArray()]);
 
         return view('index', compact('activities', 'tags', 'updated_at', 'limit', 'lastSelectedVotes'));
     }
 
-    public function getPage($url, $page = 1, $pages = 1)
+    private function getActivitiesAfterSnapshot(Collection $activities)
+    {
+        // get snapshot
+        $snapshotFile = resource_path('assets/snapshot_ranking_cpbr11.json');
+        $snapshotContents = File::get($snapshotFile);
+        $snapshotData = collect(json_decode($snapshotContents));
+
+        // get activites from snapshot
+        $snapshotActivities = collect($snapshotData->get('activities'));
+
+        $activities = $activities->map(function (Collection $activity) use ($snapshotActivities) {
+            $link = $activity->get('link');
+            $votes = $activity->get('votes');
+
+            // find the activity on snapshot
+            $key = $snapshotActivities->search(function ($snapshotActivity) use ($link) {
+                return $snapshotActivity->link == $link;
+            });
+
+            $snapshotActivity = $snapshotActivities->slice($key, 1)->first();
+
+            // decreses votes
+            $activity->put('votes', $votes - $snapshotActivity->votes);
+
+            return $activity;
+        });
+
+        return $activities;
+    }
+
+    private function getPage($url, $page = 1, $pages = 1)
     {
         /** @var Crawler $client */
         $client = Goutte::request('GET', "{$url}?page={$page}");
