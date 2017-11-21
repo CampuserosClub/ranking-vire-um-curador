@@ -16,7 +16,21 @@ window.Vue = require('vue');
  */
 
 Vue.component('tags', require('./components/Tags.vue'));
+Vue.component('activities', require('./components/Activities.vue'));
+
+Object.defineProperties(Vue.prototype, {
+    $bus: {
+        get () {
+            return this.$root.bus;
+        }
+    }
+});
+
+const bus = new Vue({});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        bus: bus
+    }
 });
