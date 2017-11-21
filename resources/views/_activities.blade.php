@@ -1,4 +1,4 @@
-<activities inline-template>
+<activities inline-template v-cloak>
     <div class="card border-dark">
         <div class="card-header bg-dark text-white">Atividades</div>
         <div class="card-text">

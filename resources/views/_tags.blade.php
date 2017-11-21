@@ -1,4 +1,4 @@
-<tags inline-template>
+<tags inline-template v-cloak>
     <div class="card bg-dark">
         <div class="card-header text-white">Categorias</div>
         <ul class="list-group list-group-flush">

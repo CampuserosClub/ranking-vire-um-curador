@@ -15,3 +15,6 @@
   background-color: #f5f5f5;
   z-index: 3;
 }
+
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
