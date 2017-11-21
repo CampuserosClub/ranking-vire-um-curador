@@ -4,8 +4,12 @@
     <title>Ranking - Vire um Curador #CPBR11</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
         .footer {
@@ -19,67 +23,71 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            Ranking - Vire um Curador #CPBR11
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="http://brasil.campus-party.org/wp-content/uploads/sites/2/2017/11/Regulamento-Vire-um-Curador-Campus-Party-Brasil-201814.11.pdf"
-                       target="_blank">
-                        Regulamento
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                Ranking - Vire um Curador #CPBR11
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="http://brasil.campus-party.org/wp-content/uploads/sites/2/2017/11/Regulamento-Vire-um-Curador-Campus-Party-Brasil-201814.11.pdf"
+                           target="_blank">
+                            Regulamento
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <main class="container">
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <p class="text-center">
-                    <a href="http://campuseros.club" class="navbar-brand" target="_blank">
-                        <img src="https://i.imgur.com/au8IA6w.png" height="120px" />
-                    </a>
-                </p>
-                @include('_disclaimer')
+        <main class="container">
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <p class="text-center">
+                        <a href="http://campuseros.club" class="navbar-brand" target="_blank">
+                            <img src="https://i.imgur.com/au8IA6w.png" height="120px" />
+                        </a>
+                    </p>
+                    @include('_disclaimer')
+                </div>
             </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-12">
-                @include('_infos')
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    @include('_infos')
+                </div>
             </div>
-        </div>
-        <div class="row mb-5 pb-3">
-            <div class="col-md-3">
-                @include('_tags')
+            <div class="row mb-5 pb-3">
+                <div class="col-md-3">
+                    @include('_tags')
+                </div>
+                <div class="col-md-9">
+                    @include('_activities')
+                </div>
             </div>
-            <div class="col-md-9">
-                @include('_activities')
-            </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="container d-flex justify-content-between">
-            <div>
-                <a href="http://campuseros.club" target="_blank">www.campuseros.club</a>
+        <footer class="footer">
+            <div class="container d-flex justify-content-between">
+                <div>
+                    <a href="http://campuseros.club" target="_blank">www.campuseros.club</a>
+                </div>
+                <div class="text-muted">
+                    <a href="https://github.com/CampuserosClub/ranking-vire-um-curador" title="Codado com amor; Veja no GitHub" target="_blank">
+                        <i class="fa fa-code"></i> com <i class="fa fa-heart-o"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://twitter.com/jaonoctus">by @jaoNoctus</a>
+                </div>
             </div>
-            <div class="text-muted">
-                <a href="https://github.com/CampuserosClub/ranking-vire-um-curador" title="Codado com amor; Veja no GitHub" target="_blank">
-                    <i class="fa fa-code"></i> com <i class="fa fa-heart-o"></i>
-                </a>
-            </div>
-            <div>
-                <a href="http://twitter.com/jaonoctus">by @jaoNoctus</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+    <script src="/js/app.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
