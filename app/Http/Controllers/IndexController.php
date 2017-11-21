@@ -64,7 +64,9 @@ class IndexController extends Controller
         });
 
         $limit = $this->limit;
-        $lastSelectedVotes = $activities->slice($limit-1, 1)->first()->get('votes');
+        $lastSelectedVotes = $activities->isEmpty()
+            ? $activities->slice($limit-1, 1)->first()->get('votes')
+            : 0;
 
         if ($this->doSnapshot) return response()->json(['stats' => ['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()], 'activities' => $activities->toArray()]);
 
