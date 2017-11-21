@@ -11,7 +11,11 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class IndexController extends Controller
 {
-    private $cache = 60 * 12;
+    private $useCache = true;
+
+    private $doSnapshot = false;
+
+    private $cacheTime = 60 * 12;
 
     private $limit = 80;
 
@@ -29,7 +33,7 @@ class IndexController extends Controller
     public function index()
     {
         Carbon::setLocale('pt_BR');
-        // Cache::flush();
+        if (!$this->useCache or $this->doSnapshot) Cache::flush();
 
         if (!Cache::has('activities')) {
             Cache::flush();
@@ -43,27 +47,26 @@ class IndexController extends Controller
         }
 
         /** @var Collection $activities */
-        $activities = Cache::remember('activities', $this->cache, function () {
-            // return $this->activities->sortByDesc('votes');
+        $activities = Cache::remember('activities', $this->cacheTime, function () {
+            if ($this->doSnapshot) return $this->activities->sortByDesc('votes');
             return $this->getActivitiesAfterSnapshot($this->activities)
                         ->sortByDesc('votes');
         });
 
         /** @var Collection $tags */
-        $tags = Cache::remember('tags', $this->cache, function () {
+        $tags = Cache::remember('tags', $this->cacheTime, function () {
             return $this->tags->sortByDesc('count');
         });
 
         /** @var Carbon $updated_at */
-        $updated_at = Cache::remember('updated_at', $this->cache, function () {
+        $updated_at = Cache::remember('updated_at', $this->cacheTime, function () {
             return Carbon::now();
         });
 
         $limit = $this->limit;
         $lastSelectedVotes = $activities->slice($limit-1, 1)->first()->get('votes');
 
-        // do the snapshot
-        // return response()->json(['stats' => ['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()], 'activities' => $activities->toArray()]);
+        if ($this->doSnapshot) return response()->json(['stats' => ['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()], 'activities' => $activities->toArray()]);
 
         return view('index', compact('activities', 'tags', 'updated_at', 'limit', 'lastSelectedVotes'));
     }
