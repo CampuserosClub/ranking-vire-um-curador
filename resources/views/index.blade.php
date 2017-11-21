@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Ranking - Vire um Curador #CPMG2</title>
+    <title>Ranking - Vire um Curador #CPBR11</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -21,7 +21,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-            Ranking - Vire um Curador #CPMG2
+            Ranking - Vire um Curador #CPBR11
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="http://brasil.campus-party.org/wp-content/uploads/sites/2/2017/10/VireUmCuradorCPMG2.0610.pdf"
+                       href="http://brasil.campus-party.org/wp-content/uploads/sites/2/2017/11/Regulamento-Vire-um-Curador-Campus-Party-Brasil-201814.11.pdf"
                        target="_blank">
                         Regulamento
                     </a>
