@@ -4,7 +4,8 @@
     export default {
         data () {
             return {
-                tags: []
+                tags: [],
+                search: ''
             }
         },
 
@@ -13,12 +14,15 @@
         },
 
         methods: {
-            filter (tags) {
+            filterByTag (tags) {
                 if (isEmpty(this.tags)) return true
 
-                const found = tags.some(tag => this.tags.includes(tag))
+                return tags.some(tag => this.tags.includes(tag))
+            },
+            filterByTitle (title) {
+                if (isEmpty(this.search)) return true
 
-                return found
+                return title.toLowerCase().includes(this.search.toLowerCase())
             }
         }
     }
