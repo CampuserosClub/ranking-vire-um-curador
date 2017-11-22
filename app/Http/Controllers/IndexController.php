@@ -70,7 +70,8 @@ class IndexController extends Controller
         });
 
         $limit = $this->limit;
-        $lastSelectedVotes = $activities->isEmpty()
+
+        $lastSelectedVotes = !$activities->isEmpty()
             ? $activities->slice($limit-1, 1)->first()->get('votes')
             : 0;
 
