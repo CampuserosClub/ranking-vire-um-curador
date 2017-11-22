@@ -15,13 +15,15 @@ class IndexController extends Controller
 
     private $doSnapshot = false;
 
+    private $decresesVotes = false;
+
     private $cacheTime = 60 * 12;
 
     private $limit = 80;
 
     private $urls = [
-        'http://campuse.ro/events/vire-um-curador-CPBR11/talk',
-        'http://campuse.ro/events/vire-um-curador-CPBR11/workshop',
+        'http://campuse.ro/events/vire-um-curador-cpbr11-votacao/workshop',
+        'http://campuse.ro/events/vire-um-curador-cpbr11-votacao/talk',
     ];
 
     /** @var  Collection */
@@ -49,7 +51,9 @@ class IndexController extends Controller
         /** @var Collection $activities */
         $activities = Cache::remember('activities', $this->cacheTime, function () {
             if ($this->doSnapshot) return $this->activities->sortByDesc('votes');
-            return $this->getActivitiesAfterSnapshot($this->activities)
+            return !$this->decresesVotes
+                ? $this->activities->sortByDesc('votes')
+                : $this->getActivitiesAfterSnapshot($this->activities)
                         ->sortByDesc('votes');
         });
 
