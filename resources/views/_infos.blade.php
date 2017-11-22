@@ -26,9 +26,15 @@
     <div class="card bg-dark text-white">
         <div class="card-body">
             <h4 class="card-title">Última atualização</h4>
-            <h3 class="card-text">
+            <h5 class="card-text">
                 {{ $updated_at->diffForHumans() }}
-            </h3>
+                <a href="?update=1"
+                   title="Limpar o cache agora"
+                   class="btn btn-sm btn-custom-white">
+                    <small><i class="fa fa-refresh"></i></small>
+                </a>
+            </h5>
+
         </div>
     </div>
 </div>

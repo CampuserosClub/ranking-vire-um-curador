@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Goutte;
 use Illuminate\Support\Collection;
 use Cache;
+use Input;
 use File;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -35,7 +36,8 @@ class IndexController extends Controller
     public function index()
     {
         Carbon::setLocale('pt_BR');
-        if (!$this->useCache or $this->doSnapshot) Cache::flush();
+
+        if (!$this->useCache or $this->doSnapshot or request('update')) Cache::flush();
 
         if (!Cache::has('activities')) {
             Cache::flush();
@@ -73,6 +75,8 @@ class IndexController extends Controller
             : 0;
 
         if ($this->doSnapshot) return response()->json(['stats' => ['activities' => $activities->count(), 'votes' => $activities->sum('votes'), 'updated_at' => $updated_at->toDateTimeString()], 'activities' => $activities->toArray()]);
+
+        if (request('update')) return redirect()->route('index');
 
         return view('index', compact('activities', 'tags', 'updated_at', 'limit', 'lastSelectedVotes'));
     }

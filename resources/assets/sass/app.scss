@@ -30,7 +30,14 @@ $transparent-white-color: rgba(255, 255, 255, 0.3)!important;
 
 .search-input:focus {
   box-shadow: none!important;
-  border-color: $transparent-white-color; }
+  border-color: $transparent-white-color;
+}
 
 [v-cloak] > * { display:none }
 [v-cloak]::before { content: "loading…" }
+
+.btn-custom-white,
+.btn-custom-white:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
