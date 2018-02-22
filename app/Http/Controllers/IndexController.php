@@ -20,11 +20,11 @@ class IndexController extends Controller
 
     private $cacheTime = 60 * 12;
 
-    private $limit = 80;
+    private $limit = 15;
 
     private $urls = [
-        'http://campuse.ro/events/vire-um-curador-cpbr11-votacao/workshop',
-        'http://campuse.ro/events/vire-um-curador-cpbr11-votacao/talk',
+        'https://campuse.ro/events/vire-um-curador-cpnatal-2018/workshop',
+        'https://campuse.ro/events/vire-um-curador-cpnatal-2018/talk',
     ];
 
     /** @var  Collection */
