@@ -69,9 +69,11 @@ class IndexController extends Controller
             return Carbon::now();
         });
 
-        $limit = $this->limit;
+        $limit = $activities->count() < $this->limit
+            ? $activities->count()
+            : $this->limit;
 
-        $lastSelectedVotes = !$activities->isEmpty()
+        $lastSelectedVotes = $activities->isNotEmpty()
             ? $activities->slice($limit-1, 1)->first()->get('votes')
             : 0;
 
