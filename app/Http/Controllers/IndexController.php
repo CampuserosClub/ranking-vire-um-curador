@@ -23,8 +23,8 @@ class IndexController extends Controller
     private $limit = 15;
 
     private $urls = [
-        'https://campuse.ro/events/vire-um-curador-cpnatal-2018/workshop',
-        'https://campuse.ro/events/vire-um-curador-cpnatal-2018/talk',
+        'https://campuse.ro/events/vire-um-curador-cpnatal-votacao/workshop',
+        'https://campuse.ro/events/vire-um-curador-cpnatal-votacao/talk',
     ];
 
     /** @var  Collection */
