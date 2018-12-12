@@ -51,7 +51,7 @@
         <footer class="footer">
             <div class="container d-flex justify-content-between">
                 <div>
-                    <a href="http://campuseros.club" target="_blank">www.campuseros.club</a>
+                    <a href="http://maringeek.com.br" target="_blank">www.maringeek.com.br</a> - código por <a href="http://campuseros.club" target="_blank">Campuseros.Club</a>
                 </div>
                 <div class="text-muted">
                     <a href="https://github.com/CampuserosClub/ranking-vire-um-curador" title="Codado com amor; Veja no GitHub" target="_blank">
