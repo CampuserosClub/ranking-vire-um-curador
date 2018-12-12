@@ -20,7 +20,7 @@ class IndexController extends Controller
 
     private $cacheTime = 60 * 12;
 
-    private $limit = 15;
+    private $limit = 20;
 
     private $urls = [
         'https://campuse.ro/events/vire-um-curador-cpbr12-votacao/workshop',
