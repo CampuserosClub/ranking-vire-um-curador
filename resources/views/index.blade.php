@@ -35,6 +35,11 @@
         <main class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
+                    @include('_disclaimer')
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
                     @include('_infos')
                 </div>
             </div>
