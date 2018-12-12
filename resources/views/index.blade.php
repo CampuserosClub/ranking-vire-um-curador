@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Ranking - Vire um Curador #CPNatal</title>
+    <title>Ranking Não Oficial - Vire um Curador #CPBR12</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
@@ -14,7 +14,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                Ranking - Vire um Curador #CPNatal
+                Ranking Não Oficial - Vire um Curador #CPBR12
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="http://brasil.campus-party.org/wp-content/uploads/sites/28/2018/02/CPNatal-Regulamento-Vire-um-Curador-2018.pdf"
+                           href="http://brasil.campus-party.org/wp-content/uploads/sites/28/2018/11/CPBR12-Regulamento-Vire-um-Curador-.pdf"
                            target="_blank">
                             Regulamento
                         </a>
@@ -35,11 +35,6 @@
         <main class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <p class="text-center">
-                        <a href="http://campuseros.club" class="navbar-brand" target="_blank">
-                            <img src="https://i.imgur.com/au8IA6w.png" height="120px" />
-                        </a>
-                    </p>
                     @include('_disclaimer')
                 </div>
             </div>
@@ -61,7 +56,7 @@
         <footer class="footer">
             <div class="container d-flex justify-content-between">
                 <div>
-                    <a href="http://campuseros.club" target="_blank">www.campuseros.club</a>
+                    <a href="http://maringeek.com.br" target="_blank">www.maringeek.com.br</a> - código por <a href="http://campuseros.club" target="_blank">Campuseros.Club</a>
                 </div>
                 <div class="text-muted">
                     <a href="https://github.com/CampuserosClub/ranking-vire-um-curador" title="Codado com amor; Veja no GitHub" target="_blank">
@@ -69,7 +64,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="http://twitter.com/jaonoctus">by @jaoNoctus</a>
+                    <a href="http://twitter.com/jaonoctus">by @jaoNoctus</a> / alterações by <a href="http://github.com/jppcel">@jppcel</a>
                 </div>
             </div>
         </footer>

@@ -20,11 +20,11 @@ class IndexController extends Controller
 
     private $cacheTime = 60 * 12;
 
-    private $limit = 15;
+    private $limit = 20;
 
     private $urls = [
-        'https://campuse.ro/events/vire-um-curador-cpnatal-votacao/workshop',
-        'https://campuse.ro/events/vire-um-curador-cpnatal-votacao/talk',
+        'https://campuse.ro/events/vire-um-curador-cpbr12-votacao/workshop',
+        'https://campuse.ro/events/vire-um-curador-cpbr12-votacao/talk',
     ];
 
     /** @var  Collection */
@@ -32,6 +32,8 @@ class IndexController extends Controller
 
     /** @var  Collection */
     private $activities;
+
+    private $activities_links = array();
 
     public function index()
     {
@@ -133,35 +135,44 @@ class IndexController extends Controller
             ->each(function (Crawler $node) {
 
                 $link = $node->filter('a')->attr('href');
-                $title = $node->filter('a')->text();
-                $votes = (int) $node->filter('span')->text();
-                $tags = collect();
-
-                $node->filter('.activity-tag')->each(function (Crawler $node) use ($tags) {
-                    $tagName = $node->text();
-                    $tagID = str_slug($tagName);
-
-                    $tags->push($tagName);
-
-                    if (!$this->tags->has($tagID)) {
-                        $this->tags->put($tagID, [
-                            'name' => $tagName,
-                            'count' => 1
-                        ]);
-                    } else {
-                        $this->tags->transform(function ($tag, $key) use ($tagID) {
-                            if ($key == $tagID) {
-                                $tag = collect($tag)
-                                    ->forget('count')
-                                    ->put('count', $tag['count'] + 1)
-                                    ->toArray();
-                            }
-
-                            return $tag;
-                        });
+                $has_link = false;
+                foreach($this->activities_links as $l){
+                    if($l == $link){
+                        $has_link = true;
                     }
-                });
-                $this->activities->push(collect(compact('link', 'title', 'votes', 'tags')));
+                }
+                if(!$has_link){
+                    $this->activities_links[] = $link;
+                    $title = $node->filter('a')->text();
+                    $votes = (int) $node->filter('span')->text();
+                    $tags = collect();
+
+                    $node->filter('.activity-tag')->each(function (Crawler $node) use ($tags) {
+                        $tagName = $node->text();
+                        $tagID = str_slug($tagName);
+
+                        $tags->push($tagName);
+
+                        if (!$this->tags->has($tagID)) {
+                            $this->tags->put($tagID, [
+                                'name' => $tagName,
+                                'count' => 1
+                            ]);
+                        } else {
+                            $this->tags->transform(function ($tag, $key) use ($tagID) {
+                                if ($key == $tagID) {
+                                    $tag = collect($tag)
+                                        ->forget('count')
+                                        ->put('count', $tag['count'] + 1)
+                                        ->toArray();
+                                }
+
+                                return $tag;
+                            });
+                        }
+                    });
+                    $this->activities->push(collect(compact('link', 'title', 'votes', 'tags')));
+                }
             });
 
         if ($page+1 <= $pages && $pages > 1) {
